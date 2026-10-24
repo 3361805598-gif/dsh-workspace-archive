@@ -1,6 +1,6 @@
 # 独立验证报告：dsh-workspace-archive
 
-验证对象：`/Users/zhihao/Desktop/AGENT测试/DSH/dsh-workspace-archive`（`@local/dsh-workspace-archive` 0.1.0；§7 覆盖 0.2.0 的置顶功能）
+验证对象：`<workspace>/dsh-workspace-archive`（`@local/dsh-workspace-archive` 0.1.0；§7 覆盖 0.2.0 的置顶功能）
 宿主基线：DSH `0.1.7-rc.1`，profile `web`，Node `v26.3.1`（§7 的活体基线为桌面版 `0.2.0-rc.2`，Web profile `desktop`）
 报告时间：2026-09-24（§7 追加于 2026-10-05）
 
@@ -115,11 +115,11 @@ $ dsh --profile web --dump-config
 1406:  name: '@local/dsh-workspace-archive'
 ```
 
-注：该命令需要写 profile 目录下的 `cordis.yml`，在 `workspace-write` 沙箱下首次运行以 `EPERM: operation not permitted, open '/Users/zhihao/.dsh/profiles/web/cordis.yml'` 失败；经一次性提权后重跑成功。**如实记录：失败的那次是沙箱限制，不是插件问题。**
+注：该命令需要写 profile 目录下的 `cordis.yml`，在 `workspace-write` 沙箱下首次运行以 `EPERM: operation not permitted, open '<profile>/cordis.yml'` 失败；经一次性提权后重跑成功。**如实记录：失败的那次是沙箱限制，不是插件问题。**
 
 另有进度：`plugin_manager install_bundle`（target = 包目录绝对路径）返回
 `{"stage":"enable","target":"@local/dsh-workspace-archive","enabled":true,"changed":true,"application":"applied","packageResult":{"exitCode":0,...}}`，
-pnpm 以 **link** 方式安装（`+ @local/dsh-workspace-archive link:/Users/zhihao/Desktop/AGENT测试/DSH/dsh-workspace-archive`），即工作区源码目录就是被装载的包。
+pnpm 以 **link** 方式安装（`+ @local/dsh-workspace-archive link:<workspace>/dsh-workspace-archive`），即工作区源码目录就是被装载的包。
 
 ### B2. 四个插槽的 occupant（`cordis_inspect_query` / platform=client / provider=Slots / method=listSubTree）
 
