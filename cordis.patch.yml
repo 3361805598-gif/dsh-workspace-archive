@@ -1,0 +1,7 @@
+# Bundle patch for the workspace-archive plugin: inserts its one plugin row
+# into the profile roster. The Host half is a no-op; the Client half
+# (`./client`) owns every surface. Applied as a profile bundle layer through
+# the manifest's `dsh.bundle.patch` field.
+- insert:
+    - id: workspace-archive
+      name: '@local/dsh-workspace-archive'
